@@ -1,0 +1,339 @@
+/* ===== 기본 ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== 레이아웃 ===== */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.page-title {
+  margin-bottom: 16px;
+}
+
+/* ===== 상단바(topbar) ===== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: #222;
+  color: #fff;
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-logo {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.topbar-username {
+  font-size: 14px;
+}
+
+.topbar-logout {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  color: #fff;
+}
+
+.topbar-logout:hover {
+  background-color: #444;
+}
+
+/* ===== 버튼 ===== */
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  background-color: #fafafa;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  color: #333;
+}
+
+.btn:hover {
+  background-color: #eee;
+}
+
+.btn-primary {
+  background-color: #2d6cdf;
+  border-color: #2d6cdf;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #244fa8;
+}
+
+.btn-danger {
+  background-color: #e64942;
+  border-color: #e64942;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #c53732;
+}
+
+/* ===== 검색폼 & 리스트 액션 ===== */
+.search-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+.list-actions {
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+/* ===== 테이블 ===== */
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.board-table th,
+.board-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.board-table th {
+  background-color: #efefef;
+  font-weight: 600;
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ===== 페이지네이션 ===== */
+.pagination {
+  margin-top: 15px;
+}
+
+.pagination .page {
+  margin-right: 4px;
+}
+
+.pagination .current {
+  font-weight: 700;
+}
+
+/* ===== 상세보기 ===== */
+.post-title {
+  margin-bottom: 8px;
+}
+
+.post-meta {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.content-box {
+  background: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 200px;
+  white-space: pre-wrap;
+}
+
+.post-actions {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inline-form {
+  display: inline-block;
+}
+
+/* ===== 폼 (글쓰기/수정) ===== */
+.board-form {
+  background: #fff;
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-inline {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.form-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+}
+ .auth-body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  background: linear-gradient(135deg, #2d6cdf 0%, #5b8ff5 40%, #a3c4ff 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-wrapper {
+  width: 100%;
+  max-width: 420px;
+  padding: 16px;
+}
+
+.auth-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px 24px 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  color: #1f3c88;
+}
+
+.auth-error {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background-color: #ffe3e3;
+  color: #c53030;
+  font-size: 13px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-form .form-group label {
+  font-size: 14px;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="password"] {
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 6px;
+  border: 1px solid #c5c5c5;
+  background-color: #fafafa;
+  font-size: 14px;
+}
+
+.auth-form input[type="text"]:focus,
+.auth-form input[type="password"]:focus {
+  outline: none;
+  border-color: #2d6cdf;
+  box-shadow: 0 0 0 2px rgba(45, 108, 223, 0.15);
+  background-color: #ffffff;
+}
+
+.auth-actions {
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-submit {
+  width: 100%;
+  padding: 9px 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.auth-footer-text {
+  margin: 4px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: #555;
+}
+
+.auth-footer-text a {
+  color: #2d6cdf;
+  font-weight: 500;
+}

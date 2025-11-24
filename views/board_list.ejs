@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자유게시판 - 목록</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- 상단바 -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/board/list" class="topbar-logo">자유게시판</a>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-username"><%= session.user.user_name %>님</span>
+      <a href="/logout" class="topbar-logout">로그아웃</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">자유게시판</h1>
+
+    <!-- 검색 폼 -->
+    <form method="GET" action="/board/list" class="search-form">
+      <input
+        type="text"
+        name="keyword"
+        placeholder="제목 검색"
+        value="<%= keyword || '' %>"
+        class="search-input"
+      />
+      <button type="submit" class="btn btn-primary">검색</button>
+    </form>
+
+    <!-- 글쓰기 버튼 -->
+    <div class="list-actions">
+      <a href="/board/write" class="btn btn-primary">글쓰기</a>
+    </div>
+
+    <!-- 게시글 목록 -->
+    <table class="board-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>조회수</th>
+          <th>등록일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (posts.length === 0) { %>
+          <tr>
+            <td colspan="5" class="text-center">등록된 글이 없습니다.</td>
+          </tr>
+        <% } else { %>
+          <% posts.forEach(function(post) { %>
+            <tr>
+              <td>
+                <% if (post.post_type === 'NOTICE') { %>
+                  [공지]
+                <% } else { %>
+                  <%= post.post_id %>
+                <% } %>
+              </td>
+              <td>
+                <a href="/board/view/<%= post.post_id %>">
+                  <%= post.title %>
+                </a>
+              </td>
+              <td><%= post.user_name %></td>
+              <td><%= post.view_count %></td>
+              <td>
+                <%= post.created_at.toISOString().slice(0, 19).replace('T', ' ') %>
+              </td>
+            </tr>
+          <% }); %>
+        <% } %>
+      </tbody>
+    </table>
+
+    <!-- 페이지네이션 -->
+    <div class="pagination">
+      <% if (totalPages > 1) { %>
+        <% for (let p = 1; p <= totalPages; p++) { %>
+          <% if (p === currentPage) { %>
+            <span class="page current">[<%= p %>]</span>
+          <% } else { %>
+            <a
+              href="/board/list?page=<%= p %><% if (keyword) { %>&keyword=<%= keyword %><% } %>"
+              class="page"
+            >
+              [<%= p %>]
+            </a>
+          <% } %>
+        <% } %>
+      <% } %>
+    </div>
+  </main>
+</body>
+</html>

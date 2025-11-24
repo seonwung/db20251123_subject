@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>회원가입</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="auth-body">
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h1 class="auth-title">회원가입</h1>
+
+      <% if (error) { %>
+        <p class="auth-error"><%= error %></p>
+      <% } %>
+
+      <form action="/signup" method="POST" class="auth-form">
+        <div class="form-group">
+          <label for="email">이메일</label>
+          <input
+            id="email"
+            type="text"
+            name="email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="user_name">닉네임</label>
+          <input
+            id="user_name"
+            type="text"
+            name="user_name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">비밀번호</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            required
+          />
+        </div>
+
+        <div class="form-actions auth-actions">
+          <button type="submit" class="btn btn-primary auth-submit">가입하기</button>
+        </div>
+      </form>
+
+      <p class="auth-footer-text">
+        이미 계정이 있으신가요?
+        <a href="/login">로그인하러 가기</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

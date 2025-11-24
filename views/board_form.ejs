@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <% if (mode === 'create') { %>
+      글쓰기 - 자유게시판
+    <% } else { %>
+      글 수정 - 자유게시판
+    <% } %>
+  </title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- 상단바 -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/board/list" class="topbar-logo">자유게시판</a>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-username"><%= session.user.user_name %>님</span>
+      <a href="/logout" class="topbar-logout">로그아웃</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">
+      <% if (mode === 'create') { %>
+        글쓰기
+      <% } else { %>
+        글 수정
+      <% } %>
+    </h1>
+
+    <form
+      method="POST"
+      action="<% if (mode === 'create') { %>/board/write<% } else { %>/board/edit/<%= post.post_id %><% } %>"
+      class="board-form"
+    >
+      <div class="form-group">
+        <label for="title">제목</label>
+        <input
+          id="title"
+          type="text"
+          name="title"
+          value="<%= post.title %>"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="content">내용</label>
+        <textarea
+          id="content"
+          name="content"
+          rows="10"
+          required
+        ><%= post.content %></textarea>
+      </div>
+
+      <div class="form-group form-inline">
+        <label class="checkbox-label">
+          <input
+            type="checkbox"
+            name="is_notice"
+            value="1"
+            <% if (post.post_type === 'NOTICE' || post.is_notice === 1) { %>checked<% } %>
+          />
+          공지사항으로 등록
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+          <% if (mode === 'create') { %>
+            등록
+          <% } else { %>
+            수정 완료
+          <% } %>
+        </button>
+
+        <a href="/board/list" class="btn">취소</a>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

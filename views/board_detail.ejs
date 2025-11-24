@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title><%= post.title %> - 자유게시판</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- 상단바 -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/board/list" class="topbar-logo">자유게시판</a>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-username"><%= session.user.user_name %>님</span>
+      <a href="/logout" class="topbar-logout">로그아웃</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">게시글 상세보기</h1>
+
+    <h2 class="post-title"><%= post.title %></h2>
+
+    <div class="post-meta">
+      작성자: <strong><%= post.user_name %></strong> |
+      조회수: <%= post.view_count %> |
+      등록일:
+      <%= post.created_at.toISOString().slice(0, 19).replace('T', ' ') %>
+    </div>
+
+    <div class="content-box">
+      <%= post.content %>
+    </div>
+
+    <div class="post-actions">
+      <a href="/board/list" class="btn">목록</a>
+
+      <% if (session.user && session.user.user_id === post.user_id) { %>
+        <a href="/board/edit/<%= post.post_id %>" class="btn btn-primary">수정</a>
+        <form action="/board/delete/<%= post.post_id %>" method="POST" class="inline-form">
+          <button
+            type="submit"
+            class="btn btn-danger"
+            onclick="return confirm('정말 삭제하시겠습니까?');"
+          >
+            삭제
+          </button>
+        </form>
+      <% } %>
+    </div>
+  </main>
+</body>
+</html>
